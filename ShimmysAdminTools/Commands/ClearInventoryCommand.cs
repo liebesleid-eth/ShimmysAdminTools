@@ -43,7 +43,7 @@ namespace ShimmysAdminTools.Commands
 
         private void ClearItems(PlayerInventory playerInv)
         {
-            for (byte page = 0; page < 6; page++)
+            for (byte page = 0; page < PlayerInventory.PAGES; page++)
             {
                 if (page == PlayerInventory.AREA)
                     continue;
@@ -60,16 +60,26 @@ namespace ShimmysAdminTools.Commands
         private void ClearClothes(PlayerClothing cloth)
         {
             cloth.askWearBackpack(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearGlasses(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearHat(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearPants(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearMask(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearShirt(0, 0, new byte[0], true);
+            clearHands();
             cloth.askWearVest(0, 0, new byte[0], true);
+            clearHands();
 
-            for (byte i = 0; i < cloth.player.inventory.getItemCount(2); i++)
+            void clearHands()
             {
-                cloth.player.inventory.removeItem(2, 0);
+                for (byte i = 0; i < cloth.player.inventory.getItemCount(2); i++)
+                {
+                    cloth.player.inventory.removeItem(2, 0);
+                }
             }
         }
 
